@@ -1,5 +1,5 @@
 import {createUser} from "../services/users-service";
-import {createTuit, deleteTuit, findTuitById} from "../services/tuits-service";
+import {createTuit, deleteTuit, findAllTuits, findTuitById} from "../services/tuits-service";
 
 jest.setTimeout(30000);
 
@@ -112,5 +112,40 @@ describe('can retrieve a tuit by their primary key with REST API', () => {
 });
 
 describe('can retrieve all tuits with REST API', () => {
-  // TODO: implement this
+    const tuitRequestBody = {
+        tuit: "Test tuit."
+    }
+
+    const userReqBody = {
+        username: "TestUser",
+        password: "TestPassword",
+        email: 'TestUser@aliens.com'
+    }
+
+    let userId;
+    let tuitId;
+
+    beforeAll(async () => {
+        const response = await createUser(userReqBody);
+        userId = response._id;
+    });
+
+    afterAll(() => {
+        deleteUsersByUsername(userReqBody.username);
+        return deleteTuit(tuitId);
+    });
+
+    test('can retrieve a tuit by their primary key with REST API', async () => {
+        const newTuit = await createTuit(userId, tuitRequestBody);
+        tuitId = newTuit._id;
+
+        const allTuits = await findAllTuits();
+        expect(allTuits.length).toBeGreaterThanOrEqual(1);
+
+        const tuitInsertedByTest = allTuits.find(eachTuit => eachTuit._id === tuitId);
+        expect(tuitInsertedByTest).toBeDefined();
+        expect(tuitInsertedByTest.tuit).toEqual(tuitRequestBody.tuit);
+        expect(tuitInsertedByTest.postedBy._id).toEqual(userId);
+        expect(tuitInsertedByTest.postedOn).toBeDefined();
+    });
 });
