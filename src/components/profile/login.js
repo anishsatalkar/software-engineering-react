@@ -10,16 +10,26 @@ export const Login = () => {
             .then((user) => navigate('/profile/mytuits'))
             .catch(e => alert(e));
     return (
-        <div>
+        <div className="container-fluid">
             <h1>Login</h1>
-            <input onChange={(e) =>
-                setLoginUser({...loginUser,
-                    username: e.target.value})}/>
-            <input onChange={(e) =>
-                setLoginUser({...loginUser,
-                    password: e.target.value})}/>
-            <button onClick={login}>
-                Login</button>
+            <form>
+                <div className="form-group">
+                    <label htmlFor="usernameId">Username</label>
+                    <input id="usernameId" className="form-control" onChange={(e) =>
+                        setLoginUser({...loginUser,
+                            username: e.target.value})}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="passwordId">Password</label>
+                    <input id="passwordId" className="form-control" onChange={(e) =>
+                        setLoginUser({...loginUser,
+                            password: e.target.value})}/>
+                </div>
+
+                <button className="btn btn-primary" onClick={login}>
+                    Login</button>
+            </form>
+
         </div>
     );
 };
