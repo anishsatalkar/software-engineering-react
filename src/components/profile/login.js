@@ -7,7 +7,7 @@ export const Login = () => {
     const navigate = useNavigate()
     const login = () =>
         service.login(loginUser)
-            .then((user) => navigate('/profile/mytuits'))
+            .then((user) => navigate('/profile')) // TODO: CHANGE THIS TO /profile/mytuits
             .catch(e => alert(e));
     return (
         <div className="container-fluid">

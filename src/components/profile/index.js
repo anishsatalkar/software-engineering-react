@@ -1,6 +1,6 @@
 import * as service from "../../services/auth-service"
 import {useEffect, useState} from "react";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import MyTuits from "./my-tuits";
 const Profile = () => {
   const navigate = useNavigate();
@@ -23,9 +23,11 @@ const Profile = () => {
             <h6>@{profile.username}</h6>
             <button className="btn btn-primary" onClick={logout}>
                 Logout</button>
-                <Routes>
-                    <Route path="/profile/mytuits"  element={<MyTuits/>}/>
-                </Routes>
+            {/*TODO: Change this to Routes*/}
+            <MyTuits/>
+                {/*<Routes>*/}
+                {/*    <Route path="/mytuits"  element={<MyTuits/>}/>*/}
+                {/*</Routes>*/}
         </div>
     );
 };
