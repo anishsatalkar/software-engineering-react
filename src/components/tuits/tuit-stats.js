@@ -1,7 +1,6 @@
 const TuitStats = ({tuit, likeTuit}) => {
     return (
         <div className="row">
-            ...
             <div className="col">
         <span onClick={() => likeTuit(tuit)}>
         {
@@ -16,7 +15,6 @@ const TuitStats = ({tuit, likeTuit}) => {
             {tuit.stats && tuit.stats.likes}
         </span>
             </div>
-            ...
         </div>
     );
 }
