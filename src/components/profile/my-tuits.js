@@ -14,8 +14,7 @@ const MyTuits = () => {
     return(
         <div>
             <h2>My Tuits</h2>
-            <Tuits tuits={tuits}
-                   deleteTuit={deleteTuit}/>
+            <Tuits tuits={tuits} deleteTuit={deleteTuit} refreshTuits={findMyTuits}/>
         </div>
     );
 };
