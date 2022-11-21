@@ -3,11 +3,11 @@ import * as likesService from "../../services/likes-service";
 import * as dislikesService from "../../services/dislikes-service";
 import * as tuitService from "../../services/tuits-service";
 import {useEffect, useState} from "react";
-const Tuits = ({tuits = [], deleteTuit}) => {
+const Tuits = ({tuits = [], deleteTuit, refreshTuits}) => {
     const [tuitsState, setTuits] = useState(tuits);
     useEffect(() => setTuits(tuits));
 
-    const refreshTuits = async (tuit) => {
+    // const refreshTuits = async (tuit) => {
         // const foundTuit = await tuitService.findTuitById(tuit._id);
         // const tuitsInList = tuits.filter((element) => element._id === foundTuit._id);
         // if (!tuitsInList) return;
@@ -15,18 +15,18 @@ const Tuits = ({tuits = [], deleteTuit}) => {
         // const tuitInList = tuitsInList[0];
         // tuits[tuits.indexOf(tuitInList)] = foundTuit;
         // setTuits(tuits);
-    }
+    // }
 
     const likeTuit = (tuit) =>
         likesService
             .userTogglesTuitLikes("me", tuit._id)
-            .then(refreshTuits(tuit))
+            .then(refreshTuits)
             .catch(e => alert(e))
 
     const dislikeTuit = (tuit) =>
         dislikesService
             .userTogglesTuitDislikes("me", tuit._id)
-            .then(refreshTuits(tuit))
+            .then(refreshTuits)
             .catch(e => alert(e))
 
     return (
