@@ -1,6 +1,6 @@
 import * as service from "../../services/auth-service"
 import {useEffect, useState} from "react";
-import {Link, Route, Routes, useNavigate} from "react-router-dom";
+import {Link, Route, Router, Routes, useNavigate} from "react-router-dom";
 import MyTuits from "./my-tuits";
 import MyLikes from "./my-likes";
 import MyDislikes from "./my-dislikes";
@@ -25,26 +25,29 @@ const Profile = () => {
             <h6>@{profile.username}</h6>
             <button className="btn btn-primary" onClick={logout}>
                 Logout</button>
-            {/*TODO: Change this to Routes*/}
-            <div className={"row"}>
-                <div className={"col"}>
-                    <MyTuits/>
-                </div>
-            </div>
-            <div className={"row"}>
-                <div className={"col"}>
-                    <MyLikes/>
-                </div>
-            </div>
-            <div className={"row"}>
-                <div className={"col"}>
-                    <MyDislikes/>
-                </div>
-            </div>
+            <ul>
+                <li>
+                    <Link to="/profile/mytuits">
+                        My Tuits</Link>
+                </li>
+                <li>
+                    <Link to="/profile/mylikes">
+                        My Liked Tuits</Link>
+                </li>
+                <li>
+                    <Link to="/profile/mydislikes">
+                        My Disliked Tuits</Link>
+                </li>
 
-                {/*<Routes>*/}
-                {/*    <Route path="/mytuits"  element={<MyTuits/>}/>*/}
-                {/*</Routes>*/}
+            </ul>
+            <Routes>
+                <Route path="/mytuits"
+                       element={<MyTuits/>}/>
+                <Route path="/mylikes"
+                       element={<MyLikes/>}/>
+                <Route path="/mydislikes"
+                       element={<MyDislikes/>}/>
+            </Routes>
         </div>
     );
 };
