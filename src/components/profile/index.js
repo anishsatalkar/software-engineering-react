@@ -1,8 +1,9 @@
 import * as service from "../../services/auth-service"
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import MyTuits from "./my-tuits";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
@@ -33,6 +34,11 @@ const Profile = () => {
             <div className={"row"}>
                 <div className={"col"}>
                     <MyLikes/>
+                </div>
+            </div>
+            <div className={"row"}>
+                <div className={"col"}>
+                    <MyDislikes/>
                 </div>
             </div>
 

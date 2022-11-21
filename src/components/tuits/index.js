@@ -8,13 +8,13 @@ const Tuits = ({tuits = [], deleteTuit}) => {
     useEffect(() => setTuits(tuits));
 
     const refreshTuits = async (tuit) => {
-        const foundTuit = await tuitService.findTuitById(tuit._id);
-        const tuitsInList = tuits.filter((element) => element._id === foundTuit._id);
-        if (!tuitsInList) return;
-        if (tuitsInList.length > 1) return;
-        const tuitInList = tuitsInList[0];
-        tuits[tuits.indexOf(tuitInList)] = foundTuit;
-        setTuits(tuits);
+        // const foundTuit = await tuitService.findTuitById(tuit._id);
+        // const tuitsInList = tuits.filter((element) => element._id === foundTuit._id);
+        // if (!tuitsInList) return;
+        // if (tuitsInList.length > 1) return;
+        // const tuitInList = tuitsInList[0];
+        // tuits[tuits.indexOf(tuitInList)] = foundTuit;
+        // setTuits(tuits);
     }
 
     const likeTuit = (tuit) =>
@@ -31,16 +31,22 @@ const Tuits = ({tuits = [], deleteTuit}) => {
 
     return (
         <div>
-            <ul>
-                {
-                    tuitsState.map(tuit =>
-                        <Tuit key={tuit._id}
-                              deleteTuit={deleteTuit}
-                              likeTuit={likeTuit}
-                              dislikeTuit={dislikeTuit}
-                              tuit={tuit}/>)
-                }
-            </ul>
+            {tuitsState.length > 0 &&
+                <ul>
+                    {
+                        tuitsState.map(tuit =>
+                            <Tuit key={tuit._id}
+                                  deleteTuit={deleteTuit}
+                                  likeTuit={likeTuit}
+                                  dislikeTuit={dislikeTuit}
+                                  tuit={tuit}/>)
+                    }
+                </ul>
+            }
+            {
+                tuitsState.length < 1 &&
+                <h4>No Tuits</h4>
+            }
         </div>
     );
 }
