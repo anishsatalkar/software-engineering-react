@@ -36,7 +36,7 @@ test('tuit list renders async', async () => {
       </HashRouter>
   );
 
-  const tuitContent = screen.getAllByTestId(/Bob's NEW TUIT/i);
+  const tuitContent = screen.getByText(/Bob's NEW TUIT/i);
   expect(tuitContent).toBeInTheDocument();
 
 
