@@ -10,9 +10,9 @@ const MOCKED_USERS = [
 ]
 
 const MOCKED_TUITS = [
-    {tuit: "alice's tuit", postedBy: MOCKED_USERS[0], _id: "1"},
-    {tuit: "bob's tuit", postedBy: MOCKED_USERS[1], _id: "2"},
-    {tuit: "charlie's tuit", postedBy: MOCKED_USERS[2], _id: "3"},
+    {tuit: "alice's tuit", postedBy: MOCKED_USERS[0], _id: "1", stats: {likes: 1, dislikes: 0, retuits: 0, replies: 0}},
+    {tuit: "bob's tuit", postedBy: MOCKED_USERS[1], _id: "2", stats: {likes: 1, dislikes: 1, retuits: 0, replies: 0}},
+    {tuit: "charlie's tuit", postedBy: MOCKED_USERS[2], _id: "3", stats: {likes: 1, dislikes: 3, retuits: 0, replies: 0}},
 ];
 
 test('tuit list renders static tuit array', () => {
@@ -38,4 +38,6 @@ test('tuit list renders async', async () => {
 
   const tuitContent = screen.getByText(/Bob's NEW TUIT/i);
   expect(tuitContent).toBeInTheDocument();
+
+
 })
